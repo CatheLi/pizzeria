@@ -17,7 +17,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                         <li className="nav-item">
                             <Link
                                 className={`nav-link ${activeTab === 'home' ? 'active' : ''}`}
-                                href="#"
+                                to="/home"
                                 onClick={() => setActiveTab('home')}
                             >🍕Home</Link>
 
@@ -33,7 +33,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                                 <li className="nav-item">
                                     <Link
                                         className={`nav-link ${activeTab === 'login' ? 'active' : ''}`}
-                                        href="#"
+                                        to="/login"
                                         onClick={() => setActiveTab('login')}
                                     >
                                         🔐Login
@@ -42,14 +42,14 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                                 <li className="nav-item">
                                     <Link
                                         className={`nav-link ${activeTab === 'register' ? 'active' : ''}`}
-                                        href="#"
+                                        to="/register"
                                         onClick={() => setActiveTab('register')}
                                     >
                                         🔐Register
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" href="#">🔓Profile</Link>
+                                    <Link className="nav-link" to="/profile">🔓Profile</Link>
                                 </li>
 
                             </>
@@ -59,7 +59,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                             <Link
                                 className={`nav-link active ${activeTab === 'cart' ? 'active' : ''}`}
                                 id='carrito'
-                                href="#"
+                                to="/cart"
                                 onClick={() => setActiveTab('cart')}
                             >🛒Total:${total.toLocaleString()}</Link>
                         </li>
