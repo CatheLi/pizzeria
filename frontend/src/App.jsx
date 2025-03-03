@@ -1,30 +1,32 @@
-import { useState } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from "./component/Navbar";
-import Home from "./component/Home"
-import Register from "./component/Register";
-import Login from "./component/Login";
+import Home from "./pages/Home"
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import Footer from "./component/Footer";
-import Cart from "./component/Cart";
-import Pizza from "./component/Pizza";
-
-const tabs = {
-  home: <Home />,
-  cart: <Cart />,
-  register: <Register />,
-  login: <Login />,
-  pizza: <Pizza />,
-};
-
+import Cart from "./pages/Cart";
+import NotFound from "./component/NotFound";
+import Profile from "./component/Profile";
 const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
 
   return (
     <>
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} /> 
-      {tabs[activeTab]}
+      <Navbar /> 
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/cart' element={<Cart />}></Route>
+        <Route part='/login' element={<Login/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
+        <Route path='/pizza/p001' element={<Register/>}></Route>
+        <Route path='/profile' element={<Profile/>}></Route>
+        <Route path='/*' element={<NotFound/>}></Route>
+      </Routes>
       <Footer />
+    </BrowserRouter>
     </>
   );
 };
