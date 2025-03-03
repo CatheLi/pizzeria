@@ -2,13 +2,13 @@ import {Link} from 'react-router-dom'
 import './Navbar.css';
 // import Cart from './Cart'
 
-const Navbar = ({ activeTab, setActiveTab }) => {
+const Navbar = () => {
     const total = 25000;
     const token = false;
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div className="container">
-                <Link className="navbar-brand" href="#">Pizzería Mamma Mia!</Link>
+                <Link className="navbar-brand" to="/">Pizzería Mamma Mia!</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -16,9 +16,9 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                     <ul className="navbar-nav flex-grow-1">
                         <li className="nav-item">
                             <Link
-                                className={`nav-link ${activeTab === 'home' ? 'active' : ''}`}
-                                to="/home"
-                                onClick={() => setActiveTab('home')}
+                                className={`nav-link `}
+                                to="/"
+                                
                             >🍕Home</Link>
 
                         </li>
@@ -31,19 +31,19 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <Link
-                                        className={`nav-link ${activeTab === 'login' ? 'active' : ''}`}
+                                <Link
+                                        className={`nav-link `}
                                         to="/login"
-                                        onClick={() => setActiveTab('login')}
+                                        
                                     >
                                         🔐Login
                                     </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link
-                                        className={`nav-link ${activeTab === 'register' ? 'active' : ''}`}
+                                        className={`nav-link `}
                                         to="/register"
-                                        onClick={() => setActiveTab('register')}
+                                        
                                     >
                                         🔐Register
                                     </Link>
@@ -57,10 +57,10 @@ const Navbar = ({ activeTab, setActiveTab }) => {
 
                         <li className="nav-item ms-auto">
                             <Link
-                                className={`nav-link active ${activeTab === 'cart' ? 'active' : ''}`}
+                                className={`nav-link active `}
                                 id='carrito'
                                 to="/cart"
-                                onClick={() => setActiveTab('cart')}
+                                
                             >🛒Total:${total.toLocaleString()}</Link>
                         </li>
                     </ul>

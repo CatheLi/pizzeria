@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './Home.css'
 import CardPizza from "../component/CardPizza.jsx";
 import Header from "../component/Header.jsx";
-import {pizzas} from '../../data/pizzas.js'
+
 
 const Home = () => {
   const [pizzas, setPizzas] = useState([]);

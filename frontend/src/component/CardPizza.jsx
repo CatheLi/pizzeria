@@ -33,7 +33,7 @@ const CardPizza = ({ name, price, ingredients, img, description }) => {
         <li className="list-group-item text-center" style={{ fontSize: '1.5rem' }}><strong>Precio: ${price}</strong></li> 
       </ul>
       <div className="card-body d-flex justify-content-between align-items-center">
-        <Link to="/pizza/001" className="btn btn-light border-dark">{verMasText}</Link> 
+        <Link to="/pizza/p001" className="btn btn-light border-dark">{verMasText}</Link> 
         <a href="#" className="btn btn-dark">{anadirText}</a> 
       </div>
     </div>
