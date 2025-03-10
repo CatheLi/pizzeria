@@ -1,9 +1,12 @@
-import {Link} from 'react-router-dom'
 import './Navbar.css';
 // import Cart from './Cart'
+import {Link} from 'react-router-dom'
+import { useContext } from 'react';
+import { CartContext } from '../store/CartContext';
 
-const Navbar = () => {
-    const total = 25000;
+const Navbar = ({ activeTab }) => {
+    //const total = 25000;
+    const { total } = useContext(CartContext)
     const token = false;
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -15,53 +18,53 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav flex-grow-1">
                         <li className="nav-item">
-                            <Link
-                                className={`nav-link `}
-                                to="/"
-                                
+                            <Link 
+                                className={`nav-link ${activeTab === 'home' ? 'active' : ''}`} 
+                                to="/" 
+                                state={{ activeTab: 'home' }}
                             >🍕Home</Link>
-
+                            
                         </li>
                         {token ? (
                             <>
+
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">🔒Logout</a>
+                                    <Link className="nav-link" href="#">🔒Logout</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/profile">🔓Profile</Link>
                                 </li>
                             </>
                         ) : (
                             <>
                                 <li className="nav-item">
-                                <Link
-                                        className={`nav-link `}
-                                        to="/login"
-                                        
+                                    <Link 
+                                        className={`nav-link ${activeTab === 'login' ? 'active' : ''}`} 
+                                        to="/login" 
+                                        state={{ activeTab: 'login' }}
                                     >
                                         🔐Login
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link
-                                        className={`nav-link `}
-                                        to="/register"
-                                        
+                                    <Link 
+                                        className={`nav-link ${activeTab === 'register' ? 'active' : ''}`} 
+                                        to="/register" 
+                                        state={{ activeTab: 'register' }}
                                     >
                                         🔐Register
                                     </Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/profile">🔓Profile</Link>
-                                </li>
-
                             </>
                         )}
 
                         <li className="nav-item ms-auto">
-                            <Link
-                                className={`nav-link active `}
-                                id='carrito'
+                            <Link 
+                                className={`nav-link active ${activeTab === 'cart' ? 'active' : ''}`} 
+                                id='carrito' 
                                 to="/cart"
-                                
-                            >🛒Total:${total.toLocaleString()}</Link>
+                                state={{ activeTab: 'cart' }}
+                                >🛒Total:${total.toLocaleString()}</Link>
                         </li>
                     </ul>
                 </div>

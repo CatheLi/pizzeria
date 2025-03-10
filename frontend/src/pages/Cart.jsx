@@ -1,35 +1,13 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import './Cart.css';
-import { pizzaCart } from '../../data/pizzas';
-
+import { CartContext } from '../store/CartContext';
 
 const Cart = () => {
-  const [items, setItems] = useState(pizzaCart.map((item) => ({ ...item, contador: 1 })));
+  const { items, handleSumar, handleRestar, total } = useContext(CartContext);
 
-  const handleSumar = (index) => {
-    setItems((prevItems) =>
-      prevItems.map((item, i) => (i === index ? { ...item, contador: item.contador + 1 } : item))
-    );
-  };
-
-  const handleRestar = (index) => {
-    setItems((prevItems) =>
-      prevItems.map((item, i) => (i === index ? { ...item, contador: item.contador - 1 } : item))
-    );
-  };
-
-  const calculadoraTotal = (cart) => {
-    return cart.reduce((total, producto) => {
-      return total + producto.price * producto.contador;
-    }, 0);
-  };
-
-  const total = calculadoraTotal(items);
-   
-  
   return (
     <div className="containerCart">
-      <h2>Pedido:</h2>
+      <h2>Detalles del pedido:</h2>
       <table>
         <thead>
           <tr>
@@ -40,11 +18,11 @@ const Cart = () => {
           </tr>
         </thead>
         <tbody>
-          {items
+          {items && items
             .filter((item) => item.contador > 0)
             .map((item, index) => (
-              <tr key={index}>
-                <img src={item.img} alt="imagen pizza" />
+              <tr key={item.id}> 
+                <td><img src={item.img} alt="imagen pizza" /></td>
                 <td>{item.name}</td>
                 <td>{item.price}</td>
                 <td>
@@ -57,13 +35,14 @@ const Cart = () => {
         </tbody>
       </table>
       <div className="totalCart">
-        Total: {total}
+        Total: ${total}
       </div>
-      <button 
-       
-        >       
+      <button
+        type="submit"
+        className="btn btn-primary"
+      >
         Pagar
-    </button>
+      </button>
     </div>
   );
 };
