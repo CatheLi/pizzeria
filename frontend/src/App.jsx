@@ -12,6 +12,9 @@ import NotFound from "./component/NotFound";
 import Profile from "./component/Profile";
 import CartProvider  from "./store/CartContext.jsx";
 import HomeProvider  from "./store/HomeContext.jsx";
+import UserProvider from './store/UserContext';
+import ProtectedRoute from './component/ProtectedRoute';
+
 
 const App = () => {
   return (
@@ -19,23 +22,25 @@ const App = () => {
       <BrowserRouter>
         <CartProvider>
           <HomeProvider>
-            <Navbar/> 
-            <Routes>
-              <Route path='/' element={<Home />}></Route>
-              <Route path='/register' element={<Register />}></Route>
-              <Route path='/login' element={<Login />}></Route>
-              <Route path='/cart' element={<Cart />}></Route>
-              <Route path='/pizza/:pizzaId' element={<Pizza />}></Route>
-              <Route path='/profile' element={<Profile />}></Route>
-              <Route path='*' element={<NotFound />}></Route>
-            </Routes>
-            <Footer />
+            <UserProvider>
+                <Navbar/> 
+                  <Routes>
+                    <Route path='/' element={<Home />}/>
+                    <Route path='/register' element={<Register />}/>
+                    <Route path='/login' element={<Login />}/>
+                    <Route path='/cart' element={<Cart />}/>
+                    <Route path='/pizza/:pizzaId' element={<Pizza />}/>
+                    <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>}/>
+                    <Route path='*' element={<NotFound />}/>
+                  </Routes>
+                <Footer />
+              </UserProvider> 
           </HomeProvider>
-        </CartProvider>
-       
+        </CartProvider>       
       </BrowserRouter>
     </>
   );
 };
+
 
 export default App;

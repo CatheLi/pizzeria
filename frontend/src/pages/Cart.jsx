@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 import './Cart.css';
 import { CartContext } from '../store/CartContext';
+import { UserContext } from '../store/UserContext';
 
 const Cart = () => {
   const { items, handleSumar, handleRestar, total } = useContext(CartContext);
+  const {  token } = useContext(UserContext)
 
   return (
     <div className="containerCart">
@@ -40,6 +42,8 @@ const Cart = () => {
       <button
         type="submit"
         className="btn btn-primary"
+        onClick=''
+        disabled={!token}
       >
         Pagar
       </button>
